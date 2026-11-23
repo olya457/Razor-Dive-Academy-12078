@@ -1,45 +1,36 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
+import React, { useState } from 'react';
+import { StatusBar, Text, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { AppProvider, useApp } from './src/store/AppStore';
+import { AppNavigator } from './src/navigation/AppNavigator';
+import { SplashScreen } from './src/screens/SplashScreen';
+import { OnboardingScreen } from './src/screens/OnboardingScreen';
+import { MotionProvider } from './src/hooks/useMotion';
+import { styles } from './src/theme';
+function Content() {
+  const [loaded, setLoaded] = useState(false);
+  const { ready, onboarded, error } = useApp();
+  if (!loaded || !ready) {
+    return <SplashScreen onFinished={() => setLoaded(true)} />;
+  }
+  if (error) {
+    return (
+      <View style={[styles.page, { padding: 24 }]}>
+        <Text style={styles.text}>{error}</Text>
+      </View>
+    );
+  }
+  return onboarded ? <AppNavigator /> : <OnboardingScreen />;
+}
+export default function App() {
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <StatusBar barStyle="light-content" />
+      <MotionProvider>
+        <AppProvider>
+          <Content />
+        </AppProvider>
+      </MotionProvider>
     </SafeAreaProvider>
   );
 }
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;

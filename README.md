@@ -1,97 +1,53 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Razor Dive Academy
 
-# Getting Started
+React Native + TypeScript mobile app with React Navigation, AsyncStorage, local artwork, gradient buttons and a four-second WebView splash animation.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
-
-## Step 1: Start Metro
-
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
-
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Run
 
 ```sh
-# Using npm
+npm install
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
+In another terminal:
 
 ```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
 npm run ios
-
-# OR using Yarn
-yarn ios
+npm run android
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+For iOS, install CocoaPods dependencies first from `ios` using `pod install`. Ruby, CocoaPods and Node must be available on PATH. Android requires JDK 17 and Android SDK 36.
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## Structure
 
-## Step 3: Modify your app
+- `src/assets`: supplied local images; no remote image requests.
+- `src/data`: 12 locations, 8 courses, 4 equipment sets, 8 creatures and 20 rules.
+- `src/components`: shared controls, pricing, date selection and booking cards.
+- `src/screens`: onboarding, splash, catalogues, details, booking, rental, calculator and rules.
+- `src/navigation`: six bottom tabs with typed native stacks.
+- `src/store`: serialized AsyncStorage writes and persisted user state.
+- `src/utils`: pricing, schedules and conflict validation.
 
-Now that you have successfully run the app, let's make changes!
+## Behavior
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+The first launch shows onboarding after the splash. Completing or skipping onboarding is remembered. Bookings, equipment assignments, calculator selections and quiz answers are saved locally. There are no pre-filled user bookings or quiz answers.
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+A trip supports 1–8 participants and 1–3 dives. Transfer costs €15 per person per trip, a dedicated instructor costs €40 per group per dive, and rental charges use the selected number of sets. Multiple dives are scheduled three hours apart; daytime departures that finish the schedule after the local operating window are disabled. Night training uses evening slots. Dates are selectable up to one year ahead. Existing local reservations block overlapping schedules.
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+Bookings are local reservations only. No club API, live inventory, payment service or server confirmation was supplied. The booking screen explains that actual location, equipment and instructor availability requires club confirmation. Static prices and educational content come from the supplied specification.
 
-## Congratulations! :tada:
+## Checks
 
-You've successfully run and modified your React Native App. :partying_face:
+```sh
+npx tsc --noEmit
+npm run lint -- --quiet
+npm test -- --runInBand
+```
 
-### Now what?
+## Learning and adaptive layouts
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+Open **Training → Explore the Learning Library**, or use the link in **Rules**. Seven English resources from PADI and DAN include two videos. Search, filter by type, and save resources for later. Saved links survive app restarts; external articles and videos require internet access.
 
-# Troubleshooting
+Layouts follow the measured window and available content width, including fold/unfold resizing, rotation and safe areas. Catalogues use one to three columns, the creature grid supports up to four, and windows at least 600 pt wide use a left navigation rail when wider than tall; windows from 900 pt also use the rail in portrait. The compact rail scrolls on short screens, and larger windows add text labels. Forms remain comfortably readable, the equipment carousel measures its actual container, and onboarding switches to two columns when space allows. Larger accessibility text reduces column counts. Resizing does not remount navigation or reset booking form state.
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Native Animated transitions, rising bubbles and button press feedback respect Reduce Motion. Background effects stop when the screen is unfocused or the app is inactive. No extra animation dependency is installed.
