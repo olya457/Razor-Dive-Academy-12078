@@ -106,7 +106,7 @@ export function CatalogScreen({ navigation, kind }: Props) {
                 booking && {
                   borderColor: colors.accent,
                   borderWidth: 2,
-                  backgroundColor: '#469FAC',
+                  backgroundColor: colors.selected,
                 },
               ]}
             >

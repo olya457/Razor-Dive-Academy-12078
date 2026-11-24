@@ -77,9 +77,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.razordive.academy"
+    namespace "com.coin.strike.aqua.diving"
     defaultConfig {
-        applicationId "com.razordive.academy"
+        applicationId "com.coin.strike.aqua.diving"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

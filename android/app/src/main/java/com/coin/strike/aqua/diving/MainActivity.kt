@@ -1,4 +1,4 @@
-package com.razordive.academy
+package com.coin.strike.aqua.diving
 
 import android.os.Bundle
 import com.facebook.react.ReactActivity

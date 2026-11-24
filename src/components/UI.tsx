@@ -156,7 +156,9 @@ export function Button({
         <LinearGradient
           pointerEvents="none"
           colors={
-            secondary ? [colors.panel, '#216A82'] : ['#98DEE3', '#7BCAD5']
+            secondary
+              ? [colors.panel, colors.card]
+              : [colors.accent, colors.accentEnd]
           }
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
@@ -231,7 +233,10 @@ export function Option({
         s.panel,
         s.row,
         { padding: 12, minHeight: 50 },
-        selected && { backgroundColor: '#469FAC', borderColor: colors.accent },
+        selected && {
+          backgroundColor: colors.selected,
+          borderColor: colors.accent,
+        },
         disabled && { opacity: 0.4 },
       ]}
     >

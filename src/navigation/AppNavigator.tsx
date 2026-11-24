@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, useWindowDimensions } from 'react-native';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -92,9 +92,9 @@ export function AppNavigator() {
     >
       <NavigationContainer
         theme={{
-          ...DefaultTheme,
+          ...DarkTheme,
           colors: {
-            ...DefaultTheme.colors,
+            ...DarkTheme.colors,
             background: colors.background,
             card: colors.panel,
             text: colors.text,
@@ -126,13 +126,13 @@ export function AppNavigator() {
                   paddingTop: 8,
                   paddingBottom: 8,
                   paddingHorizontal: 6,
-                  backgroundColor: '#17596B',
+                  backgroundColor: colors.panel,
                   borderRadius: 24,
                   borderWidth: 1,
                   borderTopWidth: 1,
-                  borderColor: '#73BFCB',
-                  borderTopColor: '#73BFCB',
-                  shadowColor: '#062C3A',
+                  borderColor: colors.border,
+                  borderTopColor: colors.border,
+                  shadowColor: colors.shadow,
                   shadowOffset: { width: 0, height: 6 },
                   shadowOpacity: 0.3,
                   shadowRadius: 12,
@@ -155,13 +155,13 @@ export function AppNavigator() {
                   justifyContent: 'center',
                   borderRadius: 14,
                   borderWidth: focused ? 1 : 0,
-                  borderColor: '#C5F6F8',
+                  borderColor: colors.accent,
                   backgroundColor: focused ? colors.accent : 'transparent',
                 }}
               >
                 <Icon
                   name={icons[route.name as Section]}
-                  color={focused ? '#124658' : '#BDDFE6'}
+                  color={focused ? colors.dark : colors.muted}
                   size={24}
                 />
               </View>

@@ -1,4 +1,4 @@
-package com.razordive.academy
+package com.coin.strike.aqua.diving
 
 import android.app.Application
 import com.facebook.react.PackageList

@@ -29,9 +29,9 @@ export function AdaptiveTabBar({
     <View
       style={{
         width: showLabels ? 180 : 80,
-        backgroundColor: '#17596B',
+        backgroundColor: colors.panel,
         borderRightWidth: 1,
-        borderRightColor: '#73BFCB',
+        borderRightColor: colors.border,
         paddingBottom: insets.bottom,
       }}
     >
@@ -80,14 +80,14 @@ export function AdaptiveTabBar({
                 gap: 10,
                 borderRadius: 14,
                 borderWidth: 1,
-                borderColor: focused ? '#C5F6F8' : 'transparent',
+                borderColor: focused ? colors.accent : 'transparent',
                 backgroundColor: focused ? colors.accent : 'transparent',
                 opacity: pressed ? 0.7 : 1,
               })}
             >
               <Icon
                 name={icons[route.name]}
-                color={focused ? colors.dark : '#BDDFE6'}
+                color={focused ? colors.dark : colors.muted}
                 size={24}
               />
               {showLabels && (

@@ -49,7 +49,7 @@ export function RulesScreen({
                 onPress={() => {
                   Share.share({
                     title,
-                    message: `${title}\nImportance: ${importance}\n\n${description}\n\nRazor Dive Academy`,
+                    message: `${title}\nImportance: ${importance}\n\n${description}\n\nAquaQuest Diving`,
                   }).catch(reportError);
                 }}
               >

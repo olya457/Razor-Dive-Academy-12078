@@ -1,15 +1,18 @@
 import { StyleSheet } from 'react-native';
 
 export const colors = {
-  background: '#287E8E',
-  card: '#398F9E',
-  panel: '#226E86',
-  border: '#5BA2AF',
-  text: '#D2F0F3',
-  muted: '#A9D6DF',
-  accent: '#8BD4DC',
-  dark: '#124658',
-  red: '#F15A59',
+  background: '#101F1B',
+  card: '#1B3029',
+  panel: '#243D33',
+  border: '#547568',
+  text: '#F0F7F3',
+  muted: '#B7CDC1',
+  accent: '#91DDB6',
+  accentEnd: '#6BC99A',
+  selected: '#315543',
+  dark: '#10271C',
+  shadow: '#07110D',
+  red: '#FF8C86',
   yellow: '#E5C46B',
 };
 export const styles = StyleSheet.create({

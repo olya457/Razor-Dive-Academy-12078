@@ -112,7 +112,7 @@ export function OnboardingScreen() {
                         height: 6,
                         borderRadius: 3,
                         backgroundColor:
-                          i === index ? colors.accent : '#54A2AF',
+                          i === index ? colors.accent : colors.border,
                       }}
                     />
                   ))}
