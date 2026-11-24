@@ -1,4 +1,4 @@
-package com.razordiveacademy
+package com.razordive.academy
 
 import android.app.Application
 import com.facebook.react.PackageList
